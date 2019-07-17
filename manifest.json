@@ -1,28 +1,104 @@
 {
-   "applications": {
-      "gecko": {
-         "id": "uipp@allmyt.eu"
-      }
-   },
-   "author": "Eswak",
-   "content_scripts": [ {
-      "css": [ "lib/chartist.min.css" ],
-      "js": [ "src/utils/formatter-number.js", "src/utils/formatter-time.js", "src/utils/get-current-planet-coordinates.js", "src/utils/get-current-planet-resources.js", "src/utils/get-resources-worth.js", "src/utils/gf-number-to-js-number.js", "src/utils/gf-time-to-timestamp.js", "src/utils/history-utils.js", "src/utils/i18n.js", "src/utils/inprog-parser.js", "src/utils/load-universe-api.js", "src/utils/persistent-config.js", "src/utils/refresh-universe-data.js", "src/utils/rentability-time.js", "src/utils/set-config-my-planets.js", "src/utils/set-config-trade-rate.js", "src/utils/parse-research-tab.js", "src/utils/upload-image.js", "src/utils/xml2json.js", "src/utils/formulas.js", "src/utils/on-menu-click.js", "src/utils/dom-events.js", "src/analytics.js", "src/costs-helper.js", "src/current-planet-storage-helper.js", "src/galaxy-players-planets.js", "src/history-logger.js", "src/planet-fleet-shortcuts.js", "src/ship-helper.js", "src/solarsat-helper.js", "src/tab-alliance.js", "src/tab-links.js", "src/tab-settings.js", "src/tab-stats.js", "src/tab-topflop.js", "style.js", "main.js" ],
-      "matches": [ "http://*.ogame.gameforge.com/game/*", "https://*.ogame.gameforge.com/game/*" ],
-      "run_at": "document_idle"
-   } ],
-   "content_security_policy": "script-src 'self' https://www.google-analytics.com; object-src 'self'",
-   "default_locale": "en",
-   "description": "__MSG_appDesc__",
-   "icons": {
-      "128": "metalmine.128.jpeg",
-      "16": "metalmine.16.jpeg",
-      "48": "metalmine.48.jpeg"
-   },
-   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhrNO/5bPCpPz5FSJYrixyN4t1E4glUo1M00dXI+yHLJHNoFFPdAMvwjog9VHxANlcS2Wwq0AjVh/olYky65mer8dEsEOmZn4FeeZKDLYrDvH6T9J4HllsiH205Y6MqwpQvakTLvazWnxnn35GR3FWex2jkEohvBhbGXE6jOrUmyt/bT7pgqVgubDxRQTdz3EvEetse2keim96p9VflTET338vY9ieltkpbfBAaKedNYYaYa+UVcF7JbVhvWABQjOnN/5ir4gyzV/XXsWsaqrj+S3I6+sWmzh2lxq2LUjUjgeZN5n6g7kWaY/qBUDVcfnVulHeCka6byUU0hyYFW6YwIDAQAB",
-   "manifest_version": 2,
-   "name": "__MSG_appName__",
-   "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "3.13.0",
-   "web_accessible_resources": [ "lib/chartist.min.js", "lib/dom-to-image.min.js", "img/features/alliance.png", "img/features/charts.png", "img/features/deploytransport.png", "img/features/galaxy.png", "img/features/minetext.png", "img/features/missingresources.png", "img/features/nextbuilds.png", "img/features/ship.png", "img/features/solarsat.png", "img/features/stats.png", "img/features/storagetime.png", "img/features/topeco.png", "img/features/topfleet.png", "img/features/topgeneral.png", "img/features/topresearch.png", "img/resources/metal.png", "img/resources/crystal.png", "img/resources/deuterium.png", "img/mission-stay.jpg", "img/mission-ship.jpg", "img/mine-metal.png", "img/mine-crystal.png", "img/mine-deuterium.png", "img/tech-astro.png", "img/tech-plasma.png" ]
+    "manifest_version":2,
+    "applications":{
+        "gecko":{
+            "id":"Chewbaka@hack-free.org"
+        }
+    },
+    "author":"Chewbaka",
+    "name":"__MSG_appName__",
+    "version":"3.13.0",
+    "description":"__MSG_appDesc__",
+    "icons":{
+        "128":"metalmine.128.jpeg",
+        "16":"metalmine.16.jpeg",
+        "48":"metalmine.48.jpeg"
+    },
+	"browser_action": {
+		"default_icon": {
+			"16":"metalmine.16.jpeg",
+			"48":"metalmine.48.jpeg"
+		}
+	  }
+    "default_locale":"en",
+    "content_scripts":[
+        {
+            "css":[
+                "lib/chartist.min.css"
+            ],
+            "js":[
+                "src/utils/formatter-number.js",
+                "src/utils/formatter-time.js",
+                "src/utils/get-current-planet-coordinates.js",
+                "src/utils/get-current-planet-resources.js",
+                "src/utils/get-resources-worth.js",
+                "src/utils/gf-number-to-js-number.js",
+                "src/utils/gf-time-to-timestamp.js",
+                "src/utils/history-utils.js",
+                "src/utils/i18n.js",
+                "src/utils/inprog-parser.js",
+                "src/utils/load-universe-api.js",
+                "src/utils/persistent-config.js",
+                "src/utils/refresh-universe-data.js",
+                "src/utils/rentability-time.js",
+                "src/utils/set-config-my-planets.js",
+                "src/utils/set-config-trade-rate.js",
+                "src/utils/parse-research-tab.js",
+                "src/utils/upload-image.js",
+                "src/utils/xml2json.js",
+                "src/utils/formulas.js",
+                "src/utils/on-menu-click.js",
+                "src/utils/dom-events.js",
+                "src/analytics.js",
+                "src/costs-helper.js",
+                "src/current-planet-storage-helper.js",
+                "src/galaxy-players-planets.js",
+                "src/history-logger.js",
+                "src/planet-fleet-shortcuts.js",
+                "src/ship-helper.js",
+                "src/solarsat-helper.js",
+                "src/tab-alliance.js",
+                "src/tab-links.js",
+                "src/tab-settings.js",
+                "src/tab-stats.js",
+                "src/tab-topflop.js",
+                "style.js",
+                "main.js"
+            ],
+            "matches":[
+                "http://*.ogame.gameforge.com/game/*",
+                "https://*.ogame.gameforge.com/game/*"
+            ],
+            "run_at":"document_idle"
+        }
+    ],
+    "web_accessible_resources":[
+        "lib/chartist.min.js",
+        "lib/dom-to-image.min.js",
+        "img/features/alliance.png",
+        "img/features/charts.png",
+        "img/features/deploytransport.png",
+        "img/features/galaxy.png",
+        "img/features/minetext.png",
+        "img/features/missingresources.png",
+        "img/features/nextbuilds.png",
+        "img/features/ship.png",
+        "img/features/solarsat.png",
+        "img/features/stats.png",
+        "img/features/storagetime.png",
+        "img/features/topeco.png",
+        "img/features/topfleet.png",
+        "img/features/topgeneral.png",
+        "img/features/topresearch.png",
+        "img/resources/metal.png",
+        "img/resources/crystal.png",
+        "img/resources/deuterium.png",
+        "img/mission-stay.jpg",
+        "img/mission-ship.jpg",
+        "img/mine-metal.png",
+        "img/mine-crystal.png",
+        "img/mine-deuterium.png",
+        "img/tech-astro.png",
+        "img/tech-plasma.png"
+    ]
 }

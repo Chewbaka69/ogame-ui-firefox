@@ -5,41 +5,41 @@ var libs = [
 ];
 libs.forEach(function (path) {
   var lib = document.createElement('script');
-  lib.src = chrome.extension.getURL(path);
+  lib.src = browser.extension.getURL(path);
   (document.head || document.documentElement).appendChild(lib);
   lib.parentNode.removeChild(lib);
 });
 
 // add image url object
 var uipp_images = {
-  stay: chrome.extension.getURL('img/mission-stay.jpg'),
-  ship: chrome.extension.getURL('img/mission-ship.jpg'),
-  metal: chrome.extension.getURL('img/mine-metal.png'),
-  crystal: chrome.extension.getURL('img/mine-crystal.png'),
-  deuterium: chrome.extension.getURL('img/mine-deuterium.png'),
-  astrophysics: chrome.extension.getURL('img/tech-astro.png'),
-  plasma: chrome.extension.getURL('img/tech-plasma.png'),
+  stay: browser.extension.getURL('img/mission-stay.jpg'),
+  ship: browser.extension.getURL('img/mission-ship.jpg'),
+  metal: browser.extension.getURL('img/mine-metal.png'),
+  crystal: browser.extension.getURL('img/mine-crystal.png'),
+  deuterium: browser.extension.getURL('img/mine-deuterium.png'),
+  astrophysics: browser.extension.getURL('img/tech-astro.png'),
+  plasma: browser.extension.getURL('img/tech-plasma.png'),
   features: {
-    alliance: chrome.extension.getURL('img/features/alliance.png'),
-    charts: chrome.extension.getURL('img/features/charts.png'),
-    deploytransport: chrome.extension.getURL('img/features/deploytransport.png'),
-    galaxy: chrome.extension.getURL('img/features/galaxy.png'),
-    minetext: chrome.extension.getURL('img/features/minetext.png'),
-    missingresources: chrome.extension.getURL('img/features/missingresources.png'),
-    nextbuilds: chrome.extension.getURL('img/features/nextbuilds.png'),
-    solarsat: chrome.extension.getURL('img/features/solarsat.png'),
-    ship: chrome.extension.getURL('img/features/ship.png'),
-    stats: chrome.extension.getURL('img/features/stats.png'),
-    storagetime: chrome.extension.getURL('img/features/storagetime.png'),
-    topeco: chrome.extension.getURL('img/features/topeco.png'),
-    topfleet: chrome.extension.getURL('img/features/topfleet.png'),
-    topgeneral: chrome.extension.getURL('img/features/topgeneral.png'),
-    topresearch: chrome.extension.getURL('img/features/topresearch.png')
+    alliance: browser.extension.getURL('img/features/alliance.png'),
+    charts: browser.extension.getURL('img/features/charts.png'),
+    deploytransport: browser.extension.getURL('img/features/deploytransport.png'),
+    galaxy: browser.extension.getURL('img/features/galaxy.png'),
+    minetext: browser.extension.getURL('img/features/minetext.png'),
+    missingresources: browser.extension.getURL('img/features/missingresources.png'),
+    nextbuilds: browser.extension.getURL('img/features/nextbuilds.png'),
+    solarsat: browser.extension.getURL('img/features/solarsat.png'),
+    ship: browser.extension.getURL('img/features/ship.png'),
+    stats: browser.extension.getURL('img/features/stats.png'),
+    storagetime: browser.extension.getURL('img/features/storagetime.png'),
+    topeco: browser.extension.getURL('img/features/topeco.png'),
+    topfleet: browser.extension.getURL('img/features/topfleet.png'),
+    topgeneral: browser.extension.getURL('img/features/topgeneral.png'),
+    topresearch: browser.extension.getURL('img/features/topresearch.png')
   },
   resources: {
-    metal: chrome.extension.getURL('img/resources/metal.png'),
-    crystal: chrome.extension.getURL('img/resources/crystal.png'),
-    deuterium: chrome.extension.getURL('img/resources/deuterium.png')
+    metal: browser.extension.getURL('img/resources/metal.png'),
+    crystal: browser.extension.getURL('img/resources/crystal.png'),
+    deuterium: browser.extension.getURL('img/resources/deuterium.png')
   }
 };
 var imgScript = document.createElement('script');
