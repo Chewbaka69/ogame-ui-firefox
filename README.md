@@ -1,4 +1,4 @@
-# [OGame UI++](https://chrome.google.com/webstore/detail/ogame-ui++/nhbgpipnadhelnecpcjcikbnedilhddf)
+# [OGame UI++](https://addons.mozilla.org/en-US/firefox/addon/ogame-ui-extension/)
 
 A Google Chrome extension that enhances the OGame interface by adding elements and menu entries.
 
