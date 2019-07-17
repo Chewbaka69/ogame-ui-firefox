@@ -1,6 +1,7 @@
 # [OGame UI++](https://addons.mozilla.org/en-US/firefox/addon/ogame-ui-extension/)
+This is a fork of [Chrome Ogame UI++](https://github.com/eswak/chrome-ogame-ui-extension)
 
-A Google Chrome extension that enhances the OGame interface by adding elements and menu entries.
+A Firefox extension that enhances the OGame interface by adding elements and menu entries.
 
 Available in-game languages :
  - :gb: English
