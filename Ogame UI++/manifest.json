@@ -2,7 +2,7 @@
     "manifest_version":2,
     "applications":{
         "gecko":{
-            "id":"Chewbaka@hack-free.org"
+            "id":"firefox@ogame-ui"
         }
     },
     "author":"Chewbaka",
@@ -10,16 +10,17 @@
     "version":"3.13.0",
     "description":"__MSG_appDesc__",
     "icons":{
-        "128":"metalmine.128.jpeg",
-        "16":"metalmine.16.jpeg",
-        "48":"metalmine.48.jpeg"
+        "128":"icon.png",
+        "16":"icon.png",
+        "48":"icon.png"
     },
 	"browser_action": {
 		"default_icon": {
-			"16":"metalmine.16.jpeg",
-			"48":"metalmine.48.jpeg"
-		}
-	  }
+			"16":"icon.png",
+			"48":"icon.png"
+        },
+        "default_title": "__MSG_appName__"
+    },
     "default_locale":"en",
     "content_scripts":[
         {
