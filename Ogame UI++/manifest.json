@@ -2,7 +2,7 @@
     "manifest_version":2,
     "applications":{
         "gecko":{
-            "id":"firefox@ogame-ui"
+            "id":"Chewbaka@hack-free.org"
         }
     },
     "author":"Chewbaka",
