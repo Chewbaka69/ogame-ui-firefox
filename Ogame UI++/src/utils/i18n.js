@@ -195,7 +195,7 @@ var fn = function () {
       RESET_ALL: 'Alle Einstellungen von UI++ zurücksetzen',
       RESET_HISTORY: 'Punkteverlauf aller Spieler zurücksetzen. Du musst danach einige Tage warten bis dieser wieder angezeigt wird.',
       RESET_NOTES: 'Alle Notizen von benachbarten Planeten zurücksetzen, die von dir gemacht wurden.',
-      RESET_PLANETINFO: 'Setze deine Planetendaten zurück (du musst die Versorgungseinstellungen all deiner Planeten deines Imperiums besuchen, um eine korrekte Statistik zu erhalten)',
+      RESET_PLANETINFO: 'Setze deine Planetendaten zurück (Du musst die Versorgungseinstellungen all deiner Planeten deines Imperiums besuchen, um eine korrekte Statistik zu erhalten)',
       RESET_UNIVERSE: 'Alle Universumsdaten (Spielernamen, Planetenpositionen, aktuelle Punktzahl) zurücksetzen. Diese Daten werden aus der offiziellen OGame-API abgerufen, die alle 7 Tage aktualisiert wird.',
       UNIT_METAL: 'Metall',
       UNIT_CRYSTAL: 'Kristall',
