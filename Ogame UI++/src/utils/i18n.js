@@ -189,7 +189,7 @@ var fn = function () {
       RENTABILITY_PLASMA: 'Erhöhe die Stufe deiner Plasmatechnologie auf {level}<br><br>Rohstoffkosten: {totalCost}',
       RETURN_TRIP_DURATION: 'Dauer einer Rückfahrt mit einem großen Transporter',
       TRADE_RATE: 'Tauschkurs',
-      RESET_ALL_TEXT: 'If you encounter bugs using this extension, or if you want to restore default settings, click on the button below to clean up all this extension\'s data. You will need to revisit all your planet\'s resources page in order to get a properly-filled statistics page, and you will also lose all your neighbours annotations.',
+      RESET_ALL_TEXT: 'Wenn Du Fehler findest oder die Standardeinstellungen wiederherstellen möchtest, klicke auf die entsprechende Schaltfläche unten, um alle Einstellungen dieses Addons zu bereinigen. Du musst ggf. die Ressourcenseite Deiner Planeten erneut aufrufen, um eine ordnungsgemäß ausgefüllte Statistik zu erhalten. Außerdem verlierst Du alle Notizen zu Deinen Nachbarplaneten.',
       TROUBLESHOOTING: 'Fehlerbehebung',
       RESET: 'Zurücksetzen',
       RESET_ALL: 'Alle Einstellungen von UI++ zurücksetzen',
