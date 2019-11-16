@@ -11,13 +11,25 @@ var fn = function () {
     var resNames = ['metal', 'crystal', 'deuterium'];
     var missingResources = {};
 
-    window._enhanceOnceOnDomChange ('#contentWrapper #content', function () {
+    let element = null;
+    if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
+      element = '#facilitiescomponent .content';
+    } else {
+      element = '#contentWrapper #content';
+    }
+
+    window._enhanceOnceOnDomChange (element, function () {
       var costs = {};
       resNames.forEach(function (res) {
-        costs[res] = window._gfNumberToJsNumber($('.' + res + '.tooltip .cost').first().text().trim()),
+        let value = null;
+        if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
+          value = $('.resource.' + res + '.tooltip').data('value').toString();
+        } else {
+          value = $('.' + res + '.tooltip .cost').first().text().trim();
+        }
+        costs[res] = window._gfNumberToJsNumber(value),
         missingResources[res] = costs[res] - resources[res].now;
       });
-
       if (costs.metal || costs.crystal || costs.deuterium) {
         if (window.config.features.missingresources) {
           _addRessourceCountHelper();
@@ -40,12 +52,23 @@ var fn = function () {
     function _addRessourceCountHelper () {
       resNames.forEach(function (res) {
         var $element = $('.' + res + '.tooltip:not(.enhanced)').first();
-        if ($element.find('.' + res).length > 0) {
+        if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
+          $(element + ' .costs').css('top', '110px');
+          $element.css('height', '65px');
           if (missingResources[res] > 0) {
             $element.append('<div class="enhancement">-' + window._num(missingResources[res], -1 * resources[res].prod) + '</div>');
           }
 
           $element.addClass('enhanced');
+        } else {
+          if ($element.find('.' + res).length > 0) {
+            console.log(missingResources[res]);
+            if (missingResources[res] > 0) {
+              $element.append('<div class="enhancement">-' + window._num(missingResources[res], -1 * resources[res].prod) + '</div>');
+            }
+  
+            $element.addClass('enhanced');
+          }
         }
       });
     }

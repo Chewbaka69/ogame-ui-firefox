@@ -15,22 +15,27 @@ var fn = function () {
   }
 
   // remove backups and undefined configs for more free space
-  var patt = new RegExp(configKey + '-' + '\\d+$');
+  /*var patt = new RegExp(configKey + '-' + '\\d+$');
   for (var key in localStorage) {
     if (key.indexOf(configKey) === 0 && !patt.test(key)) {
       window.console.log('OGame UI++ : removing \'' + key + '\' from localStorage');
       localStorage.removeItem(key);
     }
-  }
+  }*/
 
   configKey += '-' + playerId;
 
   function saveConfig () {
-    localStorage.setItem(configKey, JSON.stringify(window.config));
+    try {
+      localStorage.setItem(configKey, JSON.stringify(window.config));
+    } catch(e) {
+      console.debug('Error LocalStorage: ' + e)
+    }
   }
 
   function getConfig () {
-    return JSON.parse(localStorage.getItem(configKey) || '{}');
+    let config = JSON.parse(localStorage.getItem(configKey) || '{}');
+    return config;
   }
 
   function resetConfig () {

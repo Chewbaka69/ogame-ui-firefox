@@ -161,8 +161,9 @@ var fn = function () {
         ['notes', window._translate('RESET_NOTES')],
         ['planet-info', window._translate('RESET_PLANETINFO')]
       ].forEach(function (choice, i) {
-        var $checkbox = $('<div style="margin-left: 18px;' + (i === 0 ? 'margin-bottom:2em' : '') + '"> </div>').data('name', choice[0])
-          .append('<input type="checkbox" class="resetChoice" id="reset-' + choice[0] + '">')
+        var $checkbox = $('<div style="margin-left: 18px;' + (i === 0 ? 'margin-bottom:2em' : '') + '"> </div>')
+        .data('name', choice[0])
+        .append('<input type="checkbox" class="resetChoice" id="reset-' + choice[0] + '">')
           .append('<label style="position: relative; top: -3px" for="reset-' + choice[0] + '">' + choice[1] + '</label>')
           .find('input').css({
             'padding': '0.5em',
@@ -187,13 +188,13 @@ var fn = function () {
       var $resetButton = $('<div style="text-align: center; margin-top: 15px"><a href="#" class="btn_blue" style="width:100px" disabled="true">' + window._translate('RESET') + '</a></div>');
       $resetButton.click(function () {
         $('.resetChoice:checked').each(function () {
-          var $this = $(this);
+          var $this = $(this).parent();
           window.uipp_analytics('uipp-data-reset', $this.data('name'));
           switch ($this.data('name')) {
-          case 'all': window._resetConfig(); break;
-          case 'history': delete window.config.history; break;
-          case 'notes': delete window.config.planetNotes; break;
-          case 'planet-info': delete window.config.players; window.config.lastPlayersUpdate = 0; break;
+            case 'all': window._resetConfig(); break;
+            case 'history': delete window.config.history; break;
+            case 'notes': delete window.config.planetNotes; break;
+            case 'planet-info': delete window.config.players; window.config.lastPlayersUpdate = 0; break;
           }
           window._saveConfig();
           window.location.reload();

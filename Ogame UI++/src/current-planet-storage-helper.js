@@ -5,11 +5,17 @@ var fn = function () {
     var resourcesArr = ['metal', 'crystal', 'deuterium'];
     var tooltips;
     try {
-      tooltips = JSON.parse(
-        window.initAjaxResourcebox.toString()
-          .replace('function initAjaxResourcebox(){reloadResources(', '')
-          .replace(new RegExp('\\);}$'), '')
-      );
+      var f = null;
+      if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
+        f = [...document.querySelectorAll('script')].find(e => e.innerText.includes('reloadResources')).innerText;
+        f = f.replace(/(.|\n)+reloadResources\(/gi, '');
+        f = f.replace(/\)\;\n|\s\}\)\(jQuery\)\;/gi, '');
+      } else {
+        f = window.reloadResources.toString()
+        .replace('reloadResources(', '')
+        .replace(new RegExp('\\);}$'), '');
+      }
+      tooltips = JSON.parse(f);
     }
     catch (e) {
       console.log('uipp : error while parsing resource tooltips');

@@ -3,7 +3,7 @@ var fn = function () {
 
   var handlers = []; // [{selector, callback}]
   function mutationHandler () {
-    // console.info ('mutationHandler');
+    //console.info ('mutationHandler');
     handlers.forEach (function (handler) {
       $(handler.selector + ':not(.enhanced)').each(function (idx, element) {
         $(this).addClass('enhanced');

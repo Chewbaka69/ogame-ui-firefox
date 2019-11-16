@@ -50,19 +50,38 @@ var fn = function () {
     };
 
     // parse resources data from the DOM and sets the resources object
-    var f = window.initAjaxResourcebox.toString();
-    f = f.replace('function initAjaxResourcebox(){reloadResources(', '');
-    f = f.substring(0, f.length - 3);
+    var f = null;
+    if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
+      f = [...document.querySelectorAll('script')].find(e => e.innerText.includes('reloadResources')).innerText;
+      f = f.replace(/(.|\n)+reloadResources\(/gi, '');
+      f = f.replace(/\)\;\n|\s\}\)\(jQuery\)\;/gi, '');
+    } else {
+      f = window.initAjaxResourcebox.toString();
+      f = f.replace('function initAjaxResourcebox(){reloadResources(', '');
+      f = f.substring(0, f.length - 3);
+    }
     var data = JSON.parse(f);
-    resources.metal.now = data.metal.resources.actual;
-    resources.metal.max = data.metal.resources.max;
-    resources.metal.prod = data.metal.resources.production;
-    resources.crystal.now = data.crystal.resources.actual;
-    resources.crystal.max = data.crystal.resources.max;
-    resources.crystal.prod = data.crystal.resources.production;
-    resources.deuterium.now = data.deuterium.resources.actual;
-    resources.deuterium.max = data.deuterium.resources.max;
-    resources.deuterium.prod = data.deuterium.resources.production;
+    if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
+      resources.metal.now = data.metal.amountRaw;
+      resources.metal.max = data.metal.max;
+      resources.metal.prod = data.metal.production;
+      resources.crystal.now = data.crystal.amountRaw;
+      resources.crystal.max = data.crystal.max;
+      resources.crystal.prod = data.crystal.production;
+      resources.deuterium.now = data.deuterium.amountRaw;
+      resources.deuterium.max = data.deuterium.max;
+      resources.deuterium.prod = data.deuterium.production;
+    } else {
+      resources.metal.now = data.metal.resources.actual;
+      resources.metal.max = data.metal.resources.max;
+      resources.metal.prod = data.metal.resources.production;
+      resources.crystal.now = data.crystal.resources.actual;
+      resources.crystal.max = data.crystal.resources.max;
+      resources.crystal.prod = data.crystal.resources.production;
+      resources.deuterium.now = data.deuterium.resources.actual;
+      resources.deuterium.max = data.deuterium.resources.max;
+      resources.deuterium.prod = data.deuterium.resources.production;
+    }
 
     // if on the resources page, update the planet's resource levels
     if (document.location.search.indexOf('resources') !== -1) {

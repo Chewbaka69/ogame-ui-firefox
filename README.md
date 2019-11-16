@@ -20,6 +20,12 @@ This extension improves the user interface by adding several features :
   - Fast deploy/transport icons when you hover your planets
   - Add custom links in your left menu
 
+## ERROR
+### QUOTA_EXCEEDED_ERR
+  - Opera: opera:config -> Domain Quota For localStorage -> 15816
+  - Firefox: about:config -> dom.storage.default_quota -> 15816
+
+
 ![Screenshot 1](uipp.1.png)
 
 ![Screenshot 2](uipp.2.png)

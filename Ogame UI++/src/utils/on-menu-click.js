@@ -35,8 +35,13 @@ var fn = function () {
   };
 
   window._insertHtml = function ($wrapper) {
-    $('#contentWrapper > :not(#eventboxContent)').hide();
-    $('#contentWrapper').append($wrapper);
+    if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
+      $('#pageContent #middle > :not(#eventlistcomponent)').hide();
+      $('#pageContent #middle').append($wrapper);
+    } else {
+      $('#contentWrapper > :not(#eventboxContent)').hide();
+      $('#contentWrapper').append($wrapper);
+    }
   };
 };
 
