@@ -13,7 +13,7 @@ var fn = function () {
 
     let element = null;
     if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
-      element = '#facilitiescomponent .content';
+      element = '#technologydetails_content .content';
     } else {
       element = '#contentWrapper #content';
     }
@@ -23,7 +23,7 @@ var fn = function () {
       resNames.forEach(function (res) {
         let value = null;
         if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
-          value = $('.resource.' + res + '.tooltip').data('value').toString();
+          value = $('.resource.' + res + '.tooltip').data('value') === undefined ? '' : $('.resource.' + res + '.tooltip').data('value').toString();
         } else {
           value = $('.' + res + '.tooltip .cost').first().text().trim();
         }
@@ -33,19 +33,19 @@ var fn = function () {
       if (costs.metal || costs.crystal || costs.deuterium) {
         if (window.config.features.missingresources) {
           _addRessourceCountHelper();
-          // _addLimitingReagentHelper();
+          //_addLimitingReagentHelper();
         }
 
         if (window.config.features.minetext) {
-          // _addProductionEconomyTimeTextHelper(costs);
+          _addProductionEconomyTimeTextHelper(costs);
           _addProductionRentabilityTimeTextHelper(costs);
         }
 
         // for non-commanders only
-        // if ($('.commander.on').length === 0) {
-        //   _addProductionBuildableInTextHelper();
-        //   _addProductionMaximumBuildableTextHelper(costs);
-        // }
+        //if ($('.commander.on').length === 0) {
+        //  _addProductionBuildableInTextHelper();
+        //  _addProductionMaximumBuildableTextHelper(costs);
+        //}
       }
     });
 
@@ -62,7 +62,6 @@ var fn = function () {
           $element.addClass('enhanced');
         } else {
           if ($element.find('.' + res).length > 0) {
-            console.log(missingResources[res]);
             if (missingResources[res] > 0) {
               $element.append('<div class="enhancement">-' + window._num(missingResources[res], -1 * resources[res].prod) + '</div>');
             }
@@ -96,7 +95,12 @@ var fn = function () {
     }
 
     function _addProductionEconomyTimeTextHelper (costs) {
-      var $el = $('#content .production_info:not(.enhanced-economy-time)');
+      var $el = null;
+      if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
+        $el = $('#technologydetails .content .information > ul:not(.enhanced-economy-time)')
+      } else {
+        $el = $('#content .production_info:not(.enhanced-economy-time)');
+      }
       $el.addClass('enhanced-economy-time');
 
       var totalPrice = costs.metal * worth.metal

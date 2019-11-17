@@ -11,8 +11,8 @@ var fn = function () {
         f = f.replace(/(.|\n)+reloadResources\(/gi, '');
         f = f.replace(/\)\;\n|\s\}\)\(jQuery\)\;/gi, '');
       } else {
-        f = window.reloadResources.toString()
-        .replace('reloadResources(', '')
+        f = window.initAjaxResourcebox.toString()
+        .replace('function initAjaxResourcebox(){reloadResources(', '')
         .replace(new RegExp('\\);}$'), '');
       }
       tooltips = JSON.parse(f);
