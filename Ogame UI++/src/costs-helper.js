@@ -36,16 +36,16 @@ var fn = function () {
           //_addLimitingReagentHelper();
         }
 
+        // for non-commanders only
+        if ($('.commander.on').length === 0) {
+          _addProductionBuildableInTextHelper();
+          _addProductionMaximumBuildableTextHelper(costs);
+        }
+
         if (window.config.features.minetext) {
           _addProductionEconomyTimeTextHelper(costs);
           _addProductionRentabilityTimeTextHelper(costs);
         }
-
-        // for non-commanders only
-        //if ($('.commander.on').length === 0) {
-        //  _addProductionBuildableInTextHelper();
-        //  _addProductionMaximumBuildableTextHelper(costs);
-        //}
       }
     });
 
@@ -110,33 +110,53 @@ var fn = function () {
         + resources.crystal.prod * worth.crystal
         + resources.deuterium.prod * worth.deuterium;
 
-      $el.append('<li class="enhancement">' + window._translate('ECONOMY_TIME', {
+      $el.append('<li class="enhancement" style="margin: 0;">' + window._translate('ECONOMY_TIME', {
         time: window._time(totalPrice / totalProd)
       }) + '</li>');
     }
 
     function _addProductionBuildableInTextHelper () {
-      var $el = $('#content .production_info:not(.enhanced-buildable-in)');
+      var $el = null;
+      if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
+        $el = $('#technologydetails .content .information > ul:not(.enhanced-buildable-in)')
+      } else {
+        $el = $('#content .production_info:not(.enhanced-buildable-in)');
+      }
       $el.addClass('enhanced-buildable-in');
+
+      let availableIn = {};
+
+      ['metal', 'crystal', 'deuterium'].forEach(function (res) {
+        let missing = missingResources[res] >= 0 ? missingResources[res] : 0;
+        availableIn[res] = missing / (resources[res].prod === 0 ? 1 : resources[res].prod);
+      });
 
       var availableInMax = Math.max(availableIn.metal, availableIn.crystal, availableIn.deuterium);
 
       if (availableInMax > 0) {
-        $el.append('<li class="enhancement">' + window._translate('BUILDABLE_IN', {
+        $el.append('<li class="enhancement" style="margin: 0;">' + window._translate('BUILDABLE_IN', {
           time: window._time(availableInMax, -1)
         }) + '</li>');
       }
     }
 
     function _addProductionMaximumBuildableTextHelper (costs) {
-      var $amount = $('#content .amount:not(.enhanced)');
+      var $amount = null;
+      if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
+        $amount = $('#technologydetails .content .information .build_amount > label:not(.enhanced)');
+      } else {
+        $amount =  $('#content .amount:not(.enhanced)');
+      }
+
       if ($amount.length > 0) {
         var maxMetal = resources.metal.now / costs.metal;
         var maxCrystal = resources.crystal.now / costs.crystal;
         var maxDeuterium = resources.deuterium.now / costs.deuterium;
+        maxDeuterium = (isNaN(maxDeuterium) ? Infinity : maxDeuterium);
+        
         var max = Math.floor(Math.min(maxMetal, maxCrystal, maxDeuterium));
         if (isFinite(max)) {
-          $amount.append('<span class="enhancement"> (Max: ' + max + ')</span>');
+          $amount.append('<span class="enhancement"> (' + max + ')</span>');
         }
 
         $amount.addClass('enhanced');
