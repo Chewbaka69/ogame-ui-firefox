@@ -28,6 +28,9 @@
                 "lib/chartist.min.css"
             ],
             "js":[
+                "src/utils/edit-note.js",
+                "src/utils/send-spy-probes.js",
+                "src/utils/toggle-ignore-planet.js",
                 "src/utils/formatter-number.js",
                 "src/utils/formatter-time.js",
                 "src/utils/get-current-planet-coordinates.js",
@@ -46,6 +49,9 @@
                 "src/utils/set-config-trade-rate.js",
                 "src/utils/parse-research-tab.js",
                 "src/utils/upload-image.js",
+                "src/tab-idle-players.js",
+                "src/tab-neighbors.js",
+                "src/spy-message-parser.js",
                 "src/utils/xml2json.js",
                 "src/utils/formulas.js",
                 "src/utils/on-menu-click.js",

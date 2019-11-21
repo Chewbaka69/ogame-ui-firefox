@@ -97,7 +97,6 @@ var userscript = function () {
   }
 
   window._addTabSettings();
-  window._addLinkTabs();
 
   // Add static helpers
   window._addInprogParser();
@@ -127,6 +126,9 @@ var userscript = function () {
     window._addSolarSatHelperInterval();
   }
 
+  // Nearby Player
+  window._addPlanetsNotes();
+
   // Refresh universe data (config.players)
   window._refreshUniverseData();
 
@@ -135,6 +137,13 @@ var userscript = function () {
 
   // Tracking code
   window._setupAnalytics();
+
+  // Nearby Player
+  window._addTabIdlePlayers();
+  window._addTabNeighbors();
+
+  // Links
+  window._addLinkTabs();
 };
 
 // inject user script into the document

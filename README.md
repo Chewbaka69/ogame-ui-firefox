@@ -27,6 +27,7 @@ This extension improves the user interface by adding several features :
   - See the daily server top/flop (biggest point increase/drop)
   - Fast deploy/transport icons when you hover your planets
   - Add custom links in your left menu
+  - Adding nearby player addon
 
 ## Errors
 ### QUOTA_EXCEEDED_ERR
