@@ -77,7 +77,7 @@ var fn = function () {
           playerPlanets.map(function (planet) {
             return [
               '<li class="enhancement">',
-              '[<a href="/game/index.php?page=galaxy&galaxy=',
+              '[<a href="' + (document.querySelector('meta[name="ogame-version"]').content.startsWith('7.') ? '/game/index.php?page=ingame&component=galaxy&galaxy=' : '/game/index.php?page=galaxy&galaxy='),
               planet.coords[0] + '&system=' + planet.coords[1] + '&position=' + planet.coords[2] + '">',
               planet.coords[0] + ':' + planet.coords[1] + ':' + planet.coords[2],
               '</a>] ',

@@ -153,8 +153,8 @@ var fn = function () {
         var maxCrystal = resources.crystal.now / costs.crystal;
         var maxDeuterium = resources.deuterium.now / costs.deuterium;
         maxDeuterium = (isNaN(maxDeuterium) ? Infinity : maxDeuterium);
-        
         var max = Math.floor(Math.min(maxMetal, maxCrystal, maxDeuterium));
+
         if (isFinite(max)) {
           $amount.append('<span class="enhancement"> (' + max + ')</span>');
         }

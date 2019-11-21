@@ -52,13 +52,13 @@ var fn = function () {
     // parse resources data from the DOM and sets the resources object
     var f = null;
     if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
-      f = [...document.querySelectorAll('script')].find(e => e.innerText.includes('reloadResources')).innerText;
-      f = f.replace(/(.|\n)+reloadResources\(/gi, '');
-      f = f.replace(/\)\;\n|\s\}\)\(jQuery\)\;/gi, '');
+      f = [...document.querySelectorAll('script')].find(e => e.innerText.includes('reloadResources')).innerText
+        .replace(/(.|\n)+reloadResources\(/gi, '')
+        .replace(/\)\;\n|\s\}\)\(jQuery\)\;/gi, '');
     } else {
-      f = window.initAjaxResourcebox.toString();
-      f = f.replace('function initAjaxResourcebox(){reloadResources(', '');
-      f = f.substring(0, f.length - 3);
+      f = window.initAjaxResourcebox.toString()
+      .replace('function initAjaxResourcebox(){reloadResources(', '')
+      .substring(0, f.length - 3);
     }
     var data = JSON.parse(f);
     if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
