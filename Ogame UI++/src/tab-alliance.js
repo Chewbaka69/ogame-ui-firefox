@@ -64,10 +64,7 @@ var fn = function () {
           '</span>',
           '<div id="planets-' + alliancePlayer.id + '" style="display:none">',
           alliancePlayer.planets.map(function (planet) {
-            let url = '<a href="/game/index.php?page=galaxy&galaxy=' + planet.coords[0] + '&system=' + planet.coords[1] + '&position=' + planet.coords[2] + '">[' + planet.coords.join(':') + ']</a>';
-
-            if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.'))
-              url = '<a href="/game/index.php?page=ingame&component=galaxy&galaxy=' + planet.coords[0] + '&system=' + planet.coords[1] + '&position=' + planet.coords[2] + '">[' + planet.coords.join(':') + ']</a>';
+            let url = '<a href="/game/index.php?page=ingame&component=galaxy&galaxy=' + planet.coords[0] + '&system=' + planet.coords[1] + '&position=' + planet.coords[2] + '">[' + planet.coords.join(':') + ']</a>';
 
             return url;
           }).join('<br>'),

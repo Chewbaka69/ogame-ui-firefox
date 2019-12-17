@@ -50,48 +50,38 @@ var fn = function () {
     };
 
     // parse resources data from the DOM and sets the resources object
-    var f = null;
-    if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
-      f = [...document.querySelectorAll('script')].find(e => e.innerText.includes('reloadResources')).innerText;
-      f = f.replace(/(.|\n)+reloadResources\(/gi, '');
-      f = f.replace(/\)\;\n|\s\}\)\(jQuery\)\;/gi, '');
-    } else {
-      f = window.initAjaxResourcebox.toString();
-      f = f.replace('function initAjaxResourcebox(){reloadResources(', '');
-      f = f.substring(0, f.length - 3);
-    }
-    var data = JSON.parse(f);
-    if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
-      resources.metal.now = data.metal.amountRaw;
-      resources.metal.max = data.metal.max;
-      resources.metal.prod = data.metal.production;
-      resources.crystal.now = data.crystal.amountRaw;
-      resources.crystal.max = data.crystal.max;
-      resources.crystal.prod = data.crystal.production;
-      resources.deuterium.now = data.deuterium.amountRaw;
-      resources.deuterium.max = data.deuterium.max;
-      resources.deuterium.prod = data.deuterium.production;
-    } else {
-      resources.metal.now = data.metal.resources.actual;
-      resources.metal.max = data.metal.resources.max;
-      resources.metal.prod = data.metal.resources.production;
-      resources.crystal.now = data.crystal.resources.actual;
-      resources.crystal.max = data.crystal.resources.max;
-      resources.crystal.prod = data.crystal.resources.production;
-      resources.deuterium.now = data.deuterium.resources.actual;
-      resources.deuterium.max = data.deuterium.resources.max;
-      resources.deuterium.prod = data.deuterium.resources.production;
-    }
+    let f = null;
+
+    f = [...document.querySelectorAll('script')].find(e => e.innerText.includes('reloadResources')).innerText;
+    f = f.replace(/(.|\n)+reloadResources\(/gi, '');
+    f = f.replace(/\)\;\n|\s\}\)\(jQuery\)\;/gi, '');
+
+    let data = JSON.parse(f);
+    let dataResources = data.resources;
+
+    let tmp = null;
+
+    resources.metal.now = dataResources.metal.amount;
+    resources.metal.max = dataResources.metal.storage;
+    tmp = parseInt($($(dataResources.metal.tooltip.split('|')[1]).find('tr').get(2)).find('td span').text().replace(/\+|\-/i, ''));
+    resources.metal.prod = tmp / 3600;
+
+    resources.crystal.now = dataResources.crystal.amount;
+    resources.crystal.max = dataResources.crystal.storage;
+    tmp = parseInt($($(dataResources.crystal.tooltip.split('|')[1]).find('tr').get(2)).find('td span').text().replace(/\+|\-/i, ''));
+    resources.crystal.prod = tmp / 3600;
+
+    resources.deuterium.now = dataResources.deuterium.amount;
+    resources.deuterium.max = dataResources.deuterium.storage;
+    tmp = parseInt($($(dataResources.deuterium.tooltip.split('|')[1]).find('tr').get(2)).find('td span').text().replace(/\+|\-/i, ''));
+    resources.deuterium.prod = tmp / 3600;
 
     // if on the resources page, update the planet's resource levels
-    if (document.location.search.indexOf('resources') !== -1) {
+    if (document.location.search.indexOf('supplies') !== -1) {
       // get mines level
-      resources.metal.level = parseInt($('.supply1 .level')
-        .text().replace($('.supply1 .level').children().text(), '').trim());
-      resources.crystal.level = parseInt($('.supply2 .level')
-        .text().replace($('.supply2 .level').children().text(), '').trim());
-      resources.deuterium.level = parseInt($('.supply3 .level')
-        .text().replace($('.supply3 .level').children().text(), '').trim());
+      resources.metal.level = parseInt($('#producers li[data-technology="1"]').data('technology'));
+      resources.crystal.level = parseInt($('#producers li[data-technology="2"]').data('technology'));
+      resources.deuterium.level = parseInt($('#producers li[data-technology="3"]').data('technology'));
     }
 
     window.config.my.planets[currentPlanetCoordinatesStr].resources = resources;

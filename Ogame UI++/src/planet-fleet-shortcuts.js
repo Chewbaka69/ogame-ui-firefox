@@ -3,11 +3,8 @@ var fn = function () {
   window._addPlanetFleetShortcuts = function _addPlanetFleetShortcuts () {
     $('div#planetList > .smallplanet').each(function (_, planet) {
       var coordinates = getPlanetCoords($(planet));
-      var url = '/game/index.php?page=fleet1';
-
-      if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
-        url = '/game/index.php?page=ingame&component=fleetdispatch';
-      }
+      
+      var url = '/game/index.php?page=ingame&component=fleetdispatch';
 
       url += '&galaxy=' + coordinates[0];
       url += '&system=' + coordinates[1];

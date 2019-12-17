@@ -12,21 +12,13 @@ var fn = function () {
     var missingResources = {};
 
     let element = null;
-    if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
-      element = '#technologydetails_content .content';
-    } else {
-      element = '#contentWrapper #content';
-    }
+    element = '#technologydetails_content .content';
 
     window._enhanceOnceOnDomChange (element, function () {
       var costs = {};
       resNames.forEach(function (res) {
         let value = null;
-        if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
-          value = $('.resource.' + res + '.tooltip').data('value') === undefined ? '' : $('.resource.' + res + '.tooltip').data('value').toString();
-        } else {
-          value = $('.' + res + '.tooltip .cost').first().text().trim();
-        }
+        value = $('.resource.' + res + '.tooltip').data('value') === undefined ? '' : $('.resource.' + res + '.tooltip').data('value').toString();
         costs[res] = window._gfNumberToJsNumber(value),
         missingResources[res] = costs[res] - resources[res].now;
       });
@@ -52,23 +44,13 @@ var fn = function () {
     function _addRessourceCountHelper () {
       resNames.forEach(function (res) {
         var $element = $('.' + res + '.tooltip:not(.enhanced)').first();
-        if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
-          $(element + ' .costs').css('top', '110px');
-          $element.css('height', '65px');
-          if (missingResources[res] > 0) {
-            $element.append('<div class="enhancement">-' + window._num(missingResources[res], -1 * resources[res].prod) + '</div>');
-          }
-
-          $element.addClass('enhanced');
-        } else {
-          if ($element.find('.' + res).length > 0) {
-            if (missingResources[res] > 0) {
-              $element.append('<div class="enhancement">-' + window._num(missingResources[res], -1 * resources[res].prod) + '</div>');
-            }
-  
-            $element.addClass('enhanced');
-          }
+        $(element + ' .costs').css('top', '110px');
+        $element.css('height', '65px');
+        if (missingResources[res] > 0) {
+          $element.append('<div class="enhancement">-' + window._num(missingResources[res], -1 * resources[res].prod) + '</div>');
         }
+
+        $element.addClass('enhanced');
       });
     }
 
@@ -96,16 +78,13 @@ var fn = function () {
 
     function _addProductionEconomyTimeTextHelper (costs) {
       var $el = null;
-      if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
-        $el = $('#technologydetails .content .information > ul:not(.enhanced-economy-time)')
-      } else {
-        $el = $('#content .production_info:not(.enhanced-economy-time)');
-      }
+      $el = $('#technologydetails .content .information > ul:not(.enhanced-economy-time)')
       $el.addClass('enhanced-economy-time');
 
       var totalPrice = costs.metal * worth.metal
         + costs.crystal * worth.crystal
         + costs.deuterium * worth.deuterium;
+
       var totalProd = resources.metal.prod * worth.metal
         + resources.crystal.prod * worth.crystal
         + resources.deuterium.prod * worth.deuterium;
@@ -117,11 +96,7 @@ var fn = function () {
 
     function _addProductionBuildableInTextHelper () {
       var $el = null;
-      if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
-        $el = $('#technologydetails .content .information > ul:not(.enhanced-buildable-in)')
-      } else {
-        $el = $('#content .production_info:not(.enhanced-buildable-in)');
-      }
+      $el = $('#technologydetails .content .information > ul:not(.enhanced-buildable-in)');
       $el.addClass('enhanced-buildable-in');
 
       let availableIn = {};
@@ -142,11 +117,7 @@ var fn = function () {
 
     function _addProductionMaximumBuildableTextHelper (costs) {
       var $amount = null;
-      if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
-        $amount = $('#technologydetails .content .information .build_amount > label:not(.enhanced)');
-      } else {
-        $amount =  $('#content .amount:not(.enhanced)');
-      }
+      $amount = $('#technologydetails .content .information .build_amount > label:not(.enhanced)');
 
       if ($amount.length > 0) {
         var maxMetal = resources.metal.now / costs.metal;

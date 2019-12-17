@@ -6,15 +6,9 @@ var fn = function () {
     var tooltips;
     try {
       var f = null;
-      if(document.querySelector('meta[name="ogame-version"]').content.startsWith('7.')) {
-        f = [...document.querySelectorAll('script')].find(e => e.innerText.includes('reloadResources')).innerText;
-        f = f.replace(/(.|\n)+reloadResources\(/gi, '');
-        f = f.replace(/\)\;\n|\s\}\)\(jQuery\)\;/gi, '');
-      } else {
-        f = window.initAjaxResourcebox.toString()
-        .replace('function initAjaxResourcebox(){reloadResources(', '')
-        .replace(new RegExp('\\);}$'), '');
-      }
+      f = [...document.querySelectorAll('script')].find(e => e.innerText.includes('reloadResources')).innerText;
+      f = f.replace(/(.|\n)+reloadResources\(/gi, '');
+      f = f.replace(/\)\;\n|\s\}\)\(jQuery\)\;/gi, '');
       tooltips = JSON.parse(f);
     }
     catch (e) {
@@ -36,7 +30,7 @@ var fn = function () {
           return;
         }
 
-        var tempTooltip = tooltips[resource].tooltip.replace(
+        var tempTooltip = tooltips.resources[resource].tooltip.replace(
           '</table>',
           [
             '<tr class="enhancement">',
