@@ -79,9 +79,9 @@ var fn = function () {
     // if on the resources page, update the planet's resource levels
     if (document.location.search.indexOf('supplies') !== -1) {
       // get mines level
-      resources.metal.level = parseInt($('#producers li[data-technology="1"]').data('technology'));
-      resources.crystal.level = parseInt($('#producers li[data-technology="2"]').data('technology'));
-      resources.deuterium.level = parseInt($('#producers li[data-technology="3"]').data('technology'));
+      resources.metal.level = parseInt($('#producers li[data-technology="1"] .level').data('value'));
+      resources.crystal.level = parseInt($('#producers li[data-technology="2"] .level').data('value'));
+      resources.deuterium.level = parseInt($('#producers li[data-technology="3"] .level').data('value'));
     }
 
     window.config.my.planets[currentPlanetCoordinatesStr].resources = resources;
