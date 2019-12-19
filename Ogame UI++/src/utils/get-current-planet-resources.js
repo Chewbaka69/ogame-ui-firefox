@@ -63,17 +63,17 @@ var fn = function () {
 
     resources.metal.now = dataResources.metal.amount;
     resources.metal.max = dataResources.metal.storage;
-    tmp = parseInt($($(dataResources.metal.tooltip.split('|')[1]).find('tr').get(2)).find('td span').text().replace(/\+|\-/i, ''));
+    tmp = parseInt($($(dataResources.metal.tooltip.split('|')[1]).find('tr').get(2)).find('td span').text().replace(/\+|\-/i, '').replace(/\./,''));
     resources.metal.prod = tmp / 3600;
 
     resources.crystal.now = dataResources.crystal.amount;
     resources.crystal.max = dataResources.crystal.storage;
-    tmp = parseInt($($(dataResources.crystal.tooltip.split('|')[1]).find('tr').get(2)).find('td span').text().replace(/\+|\-/i, ''));
+    tmp = parseInt($($(dataResources.crystal.tooltip.split('|')[1]).find('tr').get(2)).find('td span').text().replace(/\+|\-/i, '').replace(/\./,''));
     resources.crystal.prod = tmp / 3600;
 
     resources.deuterium.now = dataResources.deuterium.amount;
     resources.deuterium.max = dataResources.deuterium.storage;
-    tmp = parseInt($($(dataResources.deuterium.tooltip.split('|')[1]).find('tr').get(2)).find('td span').text().replace(/\+|\-/i, ''));
+    tmp = parseInt($($(dataResources.deuterium.tooltip.split('|')[1]).find('tr').get(2)).find('td span').text().replace(/\+|\-/i, '').replace(/\./,''));
     resources.deuterium.prod = tmp / 3600;
 
     // if on the resources page, update the planet's resource levels
