@@ -52,7 +52,7 @@ var fn = function () {
     // parse resources data from the DOM and sets the resources object
     let f = null;
 
-    f = [...document.querySelectorAll('script')].find(e => e.innerText.includes('reloadResources')).innerText;
+    f = [...document.querySelectorAll('script')].find(e => e.innerText.includes('reloadResources({"resources":')).innerText;
     f = f.replace(/(.|\n)+reloadResources\(/gi, '');
     f = f.replace(/\)\;\n|\s\}\)\(jQuery\)\;/gi, '');
 
